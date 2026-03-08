@@ -1,0 +1,29 @@
+{
+  "$schema": "../schemas/comfyui.manual-controls.profiles.schema.json",
+  "schemaVersion": "1.0",
+  "kind": "comfyui-manual-controls-profiles",
+  "profiles": [
+    {
+      "id": "text-to-image-basic",
+      "label": "Text to Image (Basic)",
+      "flowNodeId": "integration.comfyui.txt2img",
+      "controls": [
+        { "field": "prompt", "control": "textarea", "required": true },
+        { "field": "negativePrompt", "control": "textarea" },
+        { "field": "width", "control": "number", "step": 64, "minimum": 256, "maximum": 2048 },
+        { "field": "height", "control": "number", "step": 64, "minimum": 256, "maximum": 2048 }
+      ]
+    },
+    {
+      "id": "image-to-video-advanced",
+      "label": "Image to Video (Advanced)",
+      "flowNodeId": "integration.comfyui.img2vid",
+      "controls": [
+        { "field": "sourceImage", "control": "upload-image", "required": true },
+        { "field": "prompt", "control": "textarea", "required": true },
+        { "field": "frames", "control": "slider", "step": 1, "minimum": 16, "maximum": 121 },
+        { "field": "fps", "control": "slider", "step": 1, "minimum": 8, "maximum": 30 }
+      ]
+    }
+  ]
+}

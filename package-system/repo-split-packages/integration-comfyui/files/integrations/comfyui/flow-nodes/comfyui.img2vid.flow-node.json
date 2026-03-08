@@ -1,0 +1,85 @@
+{
+  "$schema": "../schemas/comfyui.flow-node.contract.schema.json",
+  "id": "integration.comfyui.img2vid",
+  "kind": "integration",
+  "displayName": "ComfyUI · Image to Video",
+  "version": "1.0.0",
+  "enabled": true,
+  "inputs": [
+    {
+      "key": "sourceImage",
+      "type": "binary",
+      "required": true,
+      "description": "Input source image uploaded by the user."
+    },
+    {
+      "key": "prompt",
+      "type": "string",
+      "required": true,
+      "description": "Motion/style prompt for generation."
+    },
+    {
+      "key": "frames",
+      "type": "number",
+      "required": false,
+      "defaultValue": 49,
+      "description": "Number of generated frames."
+    },
+    {
+      "key": "fps",
+      "type": "number",
+      "required": false,
+      "defaultValue": 12,
+      "description": "Output frames per second."
+    }
+  ],
+  "outputs": [
+    {
+      "key": "video",
+      "type": "binary",
+      "required": true,
+      "description": "Rendered video output asset."
+    },
+    {
+      "key": "metadata",
+      "type": "object",
+      "required": false,
+      "description": "Execution metadata from ComfyUI history endpoint."
+    }
+  ],
+  "customFields": [
+    {
+      "key": "workflowOverlayPath",
+      "label": "Workflow overlay file",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "manualControlsCatalogPath",
+      "label": "Manual controls catalog",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "manualControlsProfile",
+      "label": "Manual controls profile",
+      "type": "select",
+      "required": true,
+      "options": ["text-to-image-basic", "image-to-video-advanced"]
+    }
+  ],
+  "ui": {
+    "windowContractPath": "../comfyui.window-contract.json",
+    "surfaceMode": "utility",
+    "dockable": false,
+    "manualControls": {
+      "enabled": true,
+      "profile": "image-to-video-advanced"
+    }
+  },
+  "runtime": {
+    "timeoutMsDefault": 600000,
+    "retriesDefault": 0,
+    "idempotent": false
+  }
+}

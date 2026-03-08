@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carapace.local/schemas/integrations/comfyui/workflow-overlay.contract.schema.json",
+  "title": "ComfyUI Workflow Overlay Mapping Contract",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "workflow", "normalized"],
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "kind": { "type": "string", "const": "comfyui-workflow-overlay" },
+    "workflow": {
+      "type": "object",
+      "required": ["format", "entryNodeId"],
+      "properties": {
+        "format": { "type": "string", "enum": ["comfyui-api-prompt-json", "comfyui-workflow-json"] },
+        "entryNodeId": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "normalized": {
+      "type": "object",
+      "required": ["inputs", "outputs"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "nodeId", "field"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 },
+              "label": { "type": "string", "minLength": 1 },
+              "description": { "type": "string" },
+              "nodeId": { "type": "string", "minLength": 1 },
+              "field": { "type": "string", "minLength": 1 },
+              "required": { "type": "boolean" },
+              "minimum": { "type": "number" },
+              "maximum": { "type": "number" },
+              "uiControl": {
+                "type": "object",
+                "required": ["kind"],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": ["text", "textarea", "number", "slider", "toggle", "select", "upload-image", "json"]
+                  },
+                  "step": { "type": "number", "exclusiveMinimum": 0 },
+                  "manual": { "type": "boolean" },
+                  "placeholder": { "type": "string" },
+                  "helpText": { "type": "string" }
+                },
+                "additionalProperties": true
+              },
+              "transform": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "nodeId", "field"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "type": { "type": "string", "minLength": 1 },
+              "nodeId": { "type": "string", "minLength": 1 },
+              "field": { "type": "string", "minLength": 1 },
+              "artifactPath": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

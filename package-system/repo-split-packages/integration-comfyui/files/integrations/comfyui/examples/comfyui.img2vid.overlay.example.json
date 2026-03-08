@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "comfyui-workflow-overlay",
+  "workflow": {
+    "format": "comfyui-api-prompt-json",
+    "entryNodeId": "31",
+    "notes": "Example img2vid mapping for short-video flow with optional uploaded reference image."
+  },
+  "normalized": {
+    "inputs": [
+      {
+        "id": "prompt",
+        "type": "text",
+        "label": "Prompt",
+        "nodeId": "11",
+        "field": "text",
+        "required": true,
+        "uiControl": {
+          "kind": "textarea",
+          "manual": true,
+          "placeholder": "Describe motion, camera framing, and scene detail."
+        }
+      },
+      {
+        "id": "negative_prompt",
+        "type": "text",
+        "label": "Negative Prompt",
+        "nodeId": "12",
+        "field": "text",
+        "required": true
+      },
+      {
+        "id": "seed",
+        "type": "number",
+        "label": "Seed",
+        "nodeId": "20",
+        "field": "seed",
+        "required": true
+      },
+      {
+        "id": "upload_image",
+        "type": "upload-image",
+        "label": "Reference image upload",
+        "nodeId": "7",
+        "field": "image",
+        "required": false,
+        "uiControl": {
+          "kind": "upload-image",
+          "manual": true,
+          "helpText": "Optional: upload a guiding image for visual continuity."
+        },
+        "transform": "upload:image->comfy:input"
+      },
+      {
+        "id": "motion_strength",
+        "type": "number",
+        "label": "Motion Strength",
+        "nodeId": "23",
+        "field": "motion_strength",
+        "required": false,
+        "minimum": 0,
+        "maximum": 1,
+        "uiControl": {
+          "kind": "slider",
+          "manual": true,
+          "step": 0.01,
+          "helpText": "Higher values increase motion intensity at the cost of stability."
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "video_mp4",
+        "type": "video",
+        "label": "Rendered Video",
+        "nodeId": "31",
+        "field": "video",
+        "artifactPath": "outputs/video"
+      },
+      {
+        "id": "run_metadata",
+        "type": "json",
+        "label": "Run metadata",
+        "nodeId": "31",
+        "field": "metadata"
+      }
+    ]
+  }
+}

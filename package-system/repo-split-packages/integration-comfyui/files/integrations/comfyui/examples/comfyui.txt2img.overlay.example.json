@@ -1,0 +1,86 @@
+{
+  "$schema": "../schemas/comfyui.workflow-overlay.contract.schema.json",
+  "schemaVersion": "1.0",
+  "kind": "comfyui-workflow-overlay",
+  "workflow": {
+    "format": "comfyui-api-prompt-json",
+    "entryNodeId": "9",
+    "notes": "Example txt2img mapping with explicit manual control hints."
+  },
+  "normalized": {
+    "inputs": [
+      {
+        "id": "prompt",
+        "type": "text",
+        "label": "Prompt",
+        "nodeId": "6",
+        "field": "text",
+        "required": true,
+        "uiControl": {
+          "kind": "textarea",
+          "manual": true,
+          "placeholder": "Describe subject, composition, style, and lighting."
+        }
+      },
+      {
+        "id": "negative_prompt",
+        "type": "text",
+        "label": "Negative Prompt",
+        "nodeId": "7",
+        "field": "text",
+        "required": false,
+        "uiControl": {
+          "kind": "textarea",
+          "manual": true
+        }
+      },
+      {
+        "id": "width",
+        "type": "number",
+        "label": "Width",
+        "nodeId": "8",
+        "field": "width",
+        "required": false,
+        "minimum": 256,
+        "maximum": 2048,
+        "uiControl": {
+          "kind": "slider",
+          "manual": true,
+          "step": 64
+        }
+      },
+      {
+        "id": "height",
+        "type": "number",
+        "label": "Height",
+        "nodeId": "8",
+        "field": "height",
+        "required": false,
+        "minimum": 256,
+        "maximum": 2048,
+        "uiControl": {
+          "kind": "slider",
+          "manual": true,
+          "step": 64
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "id": "image_png",
+        "type": "image",
+        "label": "Rendered Image",
+        "nodeId": "9",
+        "field": "images",
+        "artifactPath": "outputs/images"
+      },
+      {
+        "id": "run_metadata",
+        "type": "json",
+        "label": "Run metadata",
+        "nodeId": "9",
+        "field": "metadata"
+      }
+    ]
+  }
+}
