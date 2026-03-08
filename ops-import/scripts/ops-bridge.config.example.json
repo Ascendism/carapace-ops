@@ -1,0 +1,7 @@
+{
+  "serverBaseUrl": "https://ops.carapaceai.org",
+  "localPort": 8799,
+  "adminToken": "REPLACE_ADMIN_TOKEN",
+  "agentToken": "REPLACE_AGENT_TOKEN",
+  "clientToken": "REPLACE_CLIENT_TOKEN"
+}
